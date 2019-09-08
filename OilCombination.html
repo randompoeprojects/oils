@@ -1,0 +1,166 @@
+<html><head></head><body>
+<h2>Select a keystone from the dropdown</h2>
+<select id="keystones" style="width:33%"></select>
+<button id="gibResult" onClick="getKeystone()">Give Result</button>
+<input id="result" style="width:100%;height:10%"></input>
+
+<h2>Select how many you have.</h2>
+<h4>Clear</h4>
+<input id="Clear" style="width:10%" value=0></input>
+<h4>Sepia</h4>
+<input id="Sepia" style="width:10%" value=0></input>
+<h4>Amber</h4>
+<input id="Amber" style="width:10%" value=0></input>
+<h4>Verdant</h4>
+<input id="Verdant" style="width:10%" value=0></input>
+<h4>Teal</h4>
+<input id="Teal" style="width:10%" value=0></input>
+<h4>Azure</h4>
+<input id="Azure" style="width:10%" value=0></input>
+<h4>Violet</h4>
+<input id="Violet" style="width:10%" value=0></input>
+<h4>Crimson</h4>
+<input id="Crimson" style="width:10%" value=0></input>
+<h4>Black</h4>
+<input id="Black" style="width:10%" value=0></input>
+<h4>Opalescent</h4>
+<input id="Opalescent" style="width:10%" value=0></input>
+<h4>Silver</h4>
+<input id="Silver" style="width:10%" value=0></input>
+<h4>Golden</h4>
+<input id="Golden" style="width:10%" value=0></input>
+
+<button id="makeStuff" onClick="getValues()">What can i make?</button>
+<h4 id="makeResult"></h4>
+<script>
+function getKeystone(){
+var key = document.getElementById('keystones');
+var element = document.getElementById('result');
+element.value = getOilsFromNumber(keyMap.get(key.value));
+}
+
+function getNumberOfOils(a,b){
+	if(a==="0"){
+		return "";
+	}else if(a==="1"){
+		return b;
+	}else if(a==="2"){
+		return b+" "+b;
+	}else {
+		return b+" "+b+" "+b;
+	}
+}
+var select = document.getElementById("keystones");
+var oilData = "Clear Clear Clear Alacrity;Clear Clear Sepia Beef;Clear Sepia Sepia Agility;Clear Clear Amber Wisdom of the Glade;Sepia Sepia Sepia Expertise;Clear Sepia Amber Thiefs Craft;Clear Clear Verdant Prowess;Sepia Sepia Amber Proficiency;Clear Sepia Verdant Ancestral Knowledge;Clear Amber Amber Might;Sepia Sepia Verdant Fending;Sepia Amber Amber Hard Knocks;Clear Clear Teal Physique;Clear Amber Verdant Arcane Vision;Clear Sepia Teal Diamond Skin;Sepia Amber Verdant Path of the Savant;Amber Amber Amber Path of the Warrior;Clear Verdant Verdant Path of the Hunter;Sepia Sepia Teal Righteous Decree;Clear Amber Teal Ironwood;Sepia Verdant Verdant Fusillade;Amber Amber Verdant Quickstep;Sepia Amber Teal Weathered Hunter;Clear Clear Azure Cloth and Chain;Clear Verdant Teal Solidity;Amber Verdant Verdant Aspect of the Eagle;Clear Sepia Azure Dynamo;Sepia Verdant Teal Decay Ward;Amber Amber Teal Thrill Seeker;Sepia Sepia Azure Aspect of the Panther;Verdant Verdant Verdant Spirit Void;Clear Amber Azure Poisonous Fangs;Clear Teal Teal Saboteur;Amber Verdant Teal Depth Perception;Sepia Amber Azure Elemental Focus;Sepia Teal Teal Deep Wisdom;Clear Verdant Azure Martial Experience;Verdant Verdant Teal Fury Bolts;Sepia Verdant Azure Battle Rouse;Amber Amber Azure Hasty Reconstruction;Amber Teal Teal Sanctuary;Clear Clear Violet Practical Application;Clear Teal Azure Words of Glory;Amber Verdant Azure Executioner;Verdant Teal Teal Mind Drinker;Clear Sepia Violet Freedom of Movement;Sepia Teal Azure Dreamer;Sepia Sepia Violet Aligned Spirits;Verdant Verdant Azure Arsonist;Clear Amber Violet Weapon Artistry;Amber Teal Azure Unpredictable Offensive;Teal Teal Teal Mystic Bulwark;Sepia Amber Violet Shamanistic Fury;Clear Verdant Violet Deep Thoughts;Clear Azure Azure Prodigal Perfection;Verdant Teal Azure Sentinel;Sepia Verdant Violet Heavy Draw;Sepia Azure Azure Claws of the Magpie;Amber Amber Violet Harvester of Foes;Clear Teal Violet Splitting Strikes;Amber Verdant Violet Silent Steps;Amber Azure Azure Explosive Runes;Teal Teal Azure Steelwood Stance;Sepia Teal Violet Efficient Explosives;Verdant Verdant Violet Totemic Zeal;Verdant Azure Azure Bone Breaker;Amber Teal Violet Gemini;Clear Azure Violet Expeditious Munitions;Verdant Teal Violet Razors Edge;Teal Azure Azure Red Storm;Sepia Azure Violet Honed Edge;Amber Azure Violet Kinetic Impacts;Teal Teal Violet Elder Power;Clear Clear Crimson Successive Detonations;Verdant Azure Violet Forceful Skewering;Azure Azure Azure Slaughter;Clear Sepia Crimson Galvanic Hammer;Sepia Sepia Crimson Magmatic Strikes;Clear Amber Crimson Toxic Strikes;Clear Violet Violet Pain Forger;Teal Azure Violet Sacrifice;Sepia Amber Crimson Entropy;Sepia Violet Violet Grave Intentions;Clear Verdant Crimson Blast Waves;Sepia Verdant Crimson Master Fletcher;Amber Amber Crimson Bladedancer;Amber Violet Violet Claws of the Pride;Clear Teal Crimson Ophidian Aim;Amber Verdant Crimson Primal Manifestation;Verdant Violet Violet Spinecruncher;Azure Azure Violet Smashing Strikes;Sepia Teal Crimson Utmost Swiftness;Verdant Verdant Crimson Farsight;Amber Teal Crimson Whirling Barrier;Teal Violet Violet Unstable Munitions;Clear Azure Crimson From the Shadows;Verdant Teal Crimson Hatchet Master;Sepia Azure Crimson Clever Construction;Amber Azure Crimson Utmost Might;Teal Teal Crimson Wandslinger;Azure Violet Violet Bludgeon Blitz;Verdant Azure Crimson Flash Freeze;Clear Violet Crimson Flaying;Teal Azure Crimson Fearsome Force;Sepia Violet Crimson Redemption;Amber Violet Crimson Utmost Intellect;Violet Violet Violet Enigmatic Defence;Verdant Violet Crimson Butchery;Azure Azure Crimson Holy Dominion;Teal Violet Crimson Static Blows;Azure Violet Crimson Light Eater;Clear Crimson Crimson Shaper;Clear Clear Black Annihilation;Sepia Crimson Crimson Ash, Frost and Storm;Clear Sepia Black Testudo;Sepia Sepia Black Lightning Walker;Amber Crimson Crimson Nimbleness;Violet Violet Crimson Aspect of the Lynx;Clear Amber Black Exceptional Performance;Sepia Amber Black Cleaving;Verdant Crimson Crimson Arcane Focus;Clear Verdant Black Combat Stamina;Sepia Verdant Black Will of Blades;Amber Amber Black Divine Fury;Teal Crimson Crimson Heartseeker;Clear Teal Black Arcane Guarding;Amber Verdant Black Reflexes;Sepia Teal Black Divine Judgement;Verdant Verdant Black Trickery;Amber Teal Black Defiance;Azure Crimson Crimson Harrier;Clear Azure Black Twin Terrors;Verdant Teal Black Enigmatic Reach;Sepia Azure Black Snowforged;Amber Azure Black Ambidexterity;Teal Teal Black Warriors Blood;Verdant Azure Black Command of the Elements;Violet Crimson Crimson Light of Divinity;Clear Violet Black Acuity;Teal Azure Black Finesse;Sepia Violet Black Mental Rapidity;Amber Violet Black Revelry;Verdant Violet Black Aggressive Bastion;Azure Azure Black Sanctity;Teal Violet Black Essence Sap;Azure Violet Black Adamant;Crimson Crimson Crimson Coldhearted Calculation;Clear Crimson Black Arcanists Dominion;Clear Clear Opalescent Eagle Eye;Sepia Crimson Black Storm Weaver;Clear Sepia Opalescent Berserking;Sepia Sepia Opalescent Potency of Will;Amber Crimson Black Coordination;Violet Violet Black Graceful Assault;Clear Amber Opalescent Brinkmanship;Sepia Amber Opalescent Fleetfoot;Verdant Crimson Black Precise Interception;Clear Verdant Opalescent Blast Radius;Sepia Verdant Opalescent Destroyer;Amber Amber Opalescent Divine Wrath;Teal Crimson Black True Strike;Clear Teal Opalescent Wrecking Ball;Amber Verdant Opalescent Titanic Impacts;Sepia Teal Opalescent Deflection;Verdant Verdant Opalescent Versatility;Amber Teal Opalescent Juggernaut;Azure Crimson Black Dervish;Clear Azure Opalescent Strong Arm;Verdant Teal Opalescent Sleight of Hand;Sepia Azure Opalescent Battle Cry;Amber Azure Opalescent Amplify;Teal Teal Opalescent Dazzling Strikes;Verdant Azure Opalescent Explosive Impact;Violet Crimson Black Fire Walker;Clear Violet Opalescent Blade Barrier;Teal Azure Opalescent Dark Arts;Sepia Violet Opalescent Melding;Amber Violet Opalescent Throatseeker;Verdant Violet Opalescent Frost Walker;Azure Azure Opalescent Steadfast;Teal Violet Opalescent Mysticism;Azure Violet Opalescent Ballistic Mastery;Crimson Crimson Black Essence Extraction;Clear Crimson Opalescent Retribution;Clear Black Black Lethal Assault;Sepia Crimson Opalescent Soul Thief;Sepia Black Black Sanctum of Thought;Amber Crimson Opalescent Command of Steel;Amber Black Black Precision;Violet Violet Opalescent Hired Killer;Verdant Crimson Opalescent Retaliation;Verdant Black Black Righteous Army;Teal Crimson Opalescent Longshot;Teal Black Black Ribcage Crusher;Azure Crimson Opalescent Dire Torment;Azure Black Black Gravepact;Clear Clear Silver Arcing Blows;Violet Crimson Opalescent Disciple of the Unyielding;Violet Black Black Disintegration;Clear Sepia Silver Blade Master;Sepia Sepia Silver Fangs of Frost;Clear Amber Silver Counterweight;Sepia Amber Silver Destructive Apparatus;Clear Verdant Silver Hunters Gambit;Sepia Verdant Silver Soul Raker;Amber Amber Silver Dirty Techniques;Clear Teal Silver Backstabbing;Amber Verdant Silver Tempest Blast;Sepia Teal Silver Winter Spirit;Verdant Verdant Silver High Explosives;Amber Teal Silver Holy Fire;Clear Azure Silver Shamans Dominion;Verdant Teal Silver Method to the Madness;Sepia Azure Silver Blade of Cunning;Amber Azure Silver Searing Heat;Teal Teal Silver Devastating Devices;Verdant Azure Silver Forces of Nature;Crimson Crimson Opalescent Singular Focus;Crimson Black Black Corruption;Clear Black Opalescent Skull Cracking;Sepia Black Opalescent Adders Touch;Clear Violet Silver Fatal Toxins;Teal Azure Silver Gladiators Perseverance;Sepia Violet Silver Lethality;Amber Black Opalescent Feller of Foes;Amber Violet Silver Lucidity;Verdant Black Opalescent Blacksmiths Clout;Verdant Violet Silver King of the Hill;Azure Azure Silver Bloodletting;Teal Black Opalescent Master Sapper;Teal Violet Silver Charging Offensive;Azure Black Opalescent Serpent Stance;Azure Violet Silver Primeval Force;Clear Crimson Silver Death Attunement;Sepia Crimson Silver Deadly Draw;Violet Black Opalescent Claws of the Hawk;Amber Crimson Silver Blast Cascade;Violet Violet Silver Swift Skewering;Verdant Crimson Silver Lord of the Dead;Teal Crimson Silver Blunt Trauma;Azure Crimson Silver Runesmith;Crimson Black Opalescent Hex Master;Black Black Black Disciple of the Forbidden;Clear Opalescent Opalescent Avatar of the Hunt;Sepia Opalescent Opalescent Prism Weave;Violet Crimson Silver Indomitable Army;Amber Opalescent Opalescent Fatal Blade;Clear Clear Golden Lava Lash;Clear Sepia Golden Atrophy;Verdant Opalescent Opalescent Ravenous Horde;Sepia Sepia Golden Spiritual Command;Clear Amber Golden Swift Venoms;Sepia Amber Golden Stun Mastery;Teal Opalescent Opalescent One with the River;Clear Verdant Golden Enduring Bond;Sepia Verdant Golden Brutal Blade;Amber Amber Golden Claws of the Falcon;Clear Teal Golden Growth and Decay;Amber Verdant Golden Disciple of the Slaughter;Sepia Teal Golden Nightstalker;Azure Opalescent Opalescent Volatile Mines;Verdant Verdant Golden Insightfulness;Amber Teal Golden Arcane Chemistry;Clear Azure Golden Cleansed Thoughts;Verdant Teal Golden Influence;Sepia Azure Golden Heart of Thunder;Crimson Crimson Silver Devotion;Clear Black Silver Purity of Flesh;Amber Azure Golden Doom Cast;Teal Teal Golden Quick Recovery;Sepia Black Silver Crystal Skin;Violet Opalescent Opalescent Bravery;Verdant Azure Golden Breath of Flames;Amber Black Silver Fervour;Clear Violet Golden Transcendence;Verdant Black Silver Profane Chemistry;Teal Azure Golden Heart of Flame;Sepia Violet Golden Written in Blood;Amber Violet Golden Aqueous Accelerant;Teal Black Silver Cruel Preparation;Verdant Violet Golden Disemboweling;Azure Azure Golden Cursed Concoction;Teal Violet Golden Soul Siphon;Azure Black Silver Arcane Potency;Azure Violet Golden Breath of Lightning;Crimson Opalescent Opalescent Vigour;Black Black Opalescent Master of Force;Violet Black Silver Hematophagy;Clear Crimson Golden Druidic Rite;Sepia Crimson Golden Heart and Soul;Amber Crimson Golden Bloodless;Violet Violet Golden Born to Fight;Verdant Crimson Golden Heart of Oak;Teal Crimson Golden Champion of the Cause;Azure Crimson Golden Survivalist;Crimson Black Silver Overcharge;Clear Opalescent Silver Overcharged;Sepia Opalescent Silver Master of the Arena;Amber Opalescent Silver Mystic Talents;Violet Crimson Golden Fingers of Frost;Verdant Opalescent Silver Divine Fervour;Teal Opalescent Silver Herbalism;Azure Opalescent Silver Blood Siphon;Black Opalescent Opalescent Crackling Speed;Violet Opalescent Silver Leadership;Crimson Crimson Golden Arcane Expanse;Clear Black Golden Endurance;Sepia Black Golden Faith and Steel;Amber Black Golden Way of the Warrior;Verdant Black Golden Deadly Inclinations;Teal Black Golden Hardened Scars;Azure Black Golden Rampart;Crimson Opalescent Silver Inexorable;Black Black Silver Stamina;Violet Black Golden Arcane Capacitor;Opalescent Opalescent Opalescent Tireless;Clear Silver Silver Arcane Swiftness;Sepia Silver Silver Stabbing Thirst;Crimson Black Golden Savagery;Clear Opalescent Golden Mana Flows;Amber Silver Silver Primal Spirit;Sepia Opalescent Golden Art of the Gladiator;Verdant Silver Silver Instability;Amber Opalescent Golden Arcane Will;Verdant Opalescent Golden Foresight;Teal Silver Silver Breath of Rime;Teal Opalescent Golden Lust for Carnage;Azure Silver Silver Frenetic;Azure Opalescent Golden Force Shaper;Black Opalescent Silver Piercing Shots;Violet Silver Silver Thick Skin;Violet Opalescent Golden Dismembering;Crimson Silver Silver Infused;Crimson Opalescent Golden Heart of Ice;Black Black Golden Swagger;Opalescent Opalescent Silver Blood Drinker;Clear Silver Golden Vitality Void;Sepia Silver Golden Fangs of the Viper;Amber Silver Golden Ethereal Feast;Verdant Silver Golden Resourcefulness;Teal Silver Golden Essence Surge;Azure Silver Golden Golem Commander;Black Silver Silver Discipline and Training;Black Opalescent Golden Assassination;Violet Silver Golden Heart of the Warrior;Crimson Silver Golden Void Barrier;Opalescent Silver Silver Skittering Runes;Opalescent Opalescent Golden Barbarism;Clear Golden Golden Crusader;Sepia Golden Golden Thunderous Salvos;Amber Golden Golden Vengeant Cascade;Verdant Golden Golden Unnatural Calm;Teal Golden Golden Golems Blood;Azure Golden Golden Tranquility;Black Silver Golden Revenge of the Hunted;Violet Golden Golden Aspect of Stone;Crimson Golden Golden Tenacity;Silver Silver Silver Sovereignty;Opalescent Silver Golden Tribal Fury;Black Golden Golden Whispers of Doom;Silver Silver Golden Spiritual Aid;Opalescent Golden Golden Charisma;Silver Golden Golden Constitution;Golden Golden Golden Soul of Steel";
+var oilList = ["Clear","Sepia","Amber","Verdant","Teal","Azure","Violet","Crimson","Black","Opalescent","Silver","Golden"];
+var map = [];
+var map2 = [];
+var valuesNumberList = [];
+oilData = oilData.split(";");
+
+
+function getValues(){
+
+var Clear = document.getElementById("Clear");
+var Sepia = document.getElementById("Sepia");
+var Amber = document.getElementById("Amber");
+var Verdant = document.getElementById("Verdant");
+var Teal = document.getElementById("Teal");
+var Azure = document.getElementById("Azure");
+var Violet = document.getElementById("Violet");
+var Crimson = document.getElementById("Crimson");
+var Black = document.getElementById("Black");
+var Opalescent = document.getElementById("Opalescent");
+var Silver = document.getElementById("Silver");
+var Golden = document.getElementById("Golden");
+var totalList = "";
+for(var i = 0; i < oilList.length; i++){
+	var oilEntryValue = getNumberOfOils(document.getElementById(oilList[i]).value,oilList[i]);
+	if(oilEntryValue!==""){
+		if(totalList!==""){
+		totalList = totalList+" ";
+		}
+		totalList=totalList+oilEntryValue;
+	}
+}
+if(totalList[0]===" "){
+totalList = totalList.splice(0,0);
+}
+var numberList = [];
+var totalListArray = totalList.split(" ");
+for(var i = 0; i < totalListArray.length; i++){
+	for(var j = i + 1;j<totalListArray.length; j++){
+		for(var k = j + 1; k<totalListArray.length; k++){
+			var entryValue = getPosition(totalListArray[i],"000000000000");
+			entryValue = getPosition(totalListArray[j],entryValue);
+			entryValue = getPosition(totalListArray[k],entryValue);
+			numberList.push(entryValue);
+		}
+	}
+}
+var set = new Set(numberList);
+var resultString = "";
+var setIter = set.values();
+for(var i = 0; i < set.size; i++){
+	resultString = resultString + " \n" + entryMap.get(setIter.next().value);
+}
+document.getElementById("makeResult").innerText = resultString;
+}
+
+for(var i = 0; i < oilData.length; i++){
+	var oilDataEntry = oilData[i].split(" ",3);
+	var entryValue = getPosition(oilDataEntry[0],"000000000000");
+	entryValue = getPosition(oilDataEntry[1],entryValue);
+	entryValue = getPosition(oilDataEntry[2],entryValue);
+	valuesNumberList.push(entryValue);
+	var oilDataEntryString = oilDataEntry[0] + " " + oilDataEntry[1] + " " + oilDataEntry[2] + " ";
+	var oilDataKeystone = oilData[i].split(oilDataEntryString)[1];
+	map.push([entryValue,oilDataKeystone]);
+	map2.push([oilDataKeystone,entryValue]);
+	var option = document.createElement("option");
+	option.text = oilDataKeystone;
+	select.add(option);
+}
+var entryMap = new Map(map);
+var keyMap = new Map(map2);
+function getPosition(oil,currentValue){
+	 var pos = 0;
+	for(var i = 0; i < oilList.length; i++){
+		if(oilList[i]===oil){
+			pos = i;
+			break;
+		}
+	}
+	var returnValue;
+	if(currentValue[pos]==="0"){
+		returnValue = currentValue.substr(0, pos) + '1' + currentValue.substr(pos + 1);
+	}
+	if(currentValue[pos]==="1"){
+		returnValue = currentValue.substr(0, pos) + '2' + currentValue.substr(pos + 1);
+	}
+	if(currentValue[pos]==="2"){
+		returnValue = currentValue.substr(0, pos) + '3' + currentValue.substr(pos + 1);
+	}
+	
+	return returnValue;
+}
+
+function getOilsFromNumber(a){
+var returnString = "";
+for(var i = 0; i < a.length; i++){
+	if(a[i]==="1"){
+		returnString = returnString + oilList[i] + " ";
+	}
+	if(a[i]==="2"){
+		returnString = returnString + oilList[i] + " " + oilList[i] + " ";
+	}
+	if(a[i]==="3"){
+		returnString = oilList[i] + " " + oilList[i] + " " + oilList[i] + " ";
+	}
+}
+return returnString;
+}
+
+
+</script>
+</body></html>
